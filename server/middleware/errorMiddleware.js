@@ -7,12 +7,7 @@ const notFound = (req,res,next) => {
 const errorHandler = (err,req,res,next) => {
     let statusCode = res.statusCode === 200 ? 500 : res.statusCode;
     let message = err.message;
-
-    //to avoid casterror of mongoose
-    if(err.name === 'CastError' && err.kind === 'ObjectId') {
-        message = 'Resource Not Found';
-        statusCode = 404;
-    }
+ 
 
     res.status(statusCode).json({
         message,
